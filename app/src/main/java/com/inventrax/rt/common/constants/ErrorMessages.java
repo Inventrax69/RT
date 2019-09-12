@@ -26,13 +26,13 @@ public class ErrorMessages {
 
     public String EMC_0010 = "Please enter Delivery document number.";
 
-    public String EMC_0011 = "Please scan SKU";
+    public String EMC_0011 = "No items found";
 
     public String EMC_0012 = "Please select location";
 
     public String EMC_0013 = "Invalid Barcode. ";
 
-    public String EMC_0014 = "Please scan valid SKU.";
+    public String EMC_0014 = "Please scan part / batch / location to get active stock ";
 
     public String EMC_0015 = "No stock available.";
 

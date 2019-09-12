@@ -198,6 +198,7 @@ public class InternalTransferFragment extends Fragment implements View.OnClickLi
                 break;
             case R.id.btnDetails:
                 if (!etPartNo.getText().toString().isEmpty()) {
+                    tl.removeAllViews();
                     getDetails();
                 } else {
                     common.showUserDefinedAlertType("Please enter part number.", getActivity(), getContext(), "Error");

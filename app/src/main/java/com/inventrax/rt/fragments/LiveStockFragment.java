@@ -186,8 +186,16 @@ public class LiveStockFragment extends Fragment implements View.OnClickListener,
 
                 tl.removeAllViews();
 
-                // To get Live stock details
-                getLiveStock();
+                if(!etLocation.getText().toString().isEmpty() || !etBatch.getText().toString().isEmpty() || !etPartNo.getText().toString().isEmpty()){
+
+                    // To get Live stock details
+                    getLiveStock();
+
+                }else {
+                    common.showUserDefinedAlertType(errorMessages.EMC_0014, getActivity(), getContext(), "Error");
+                }
+
+
 
                 break;
 
@@ -319,7 +327,7 @@ public class LiveStockFragment extends Fragment implements View.OnClickListener,
 
                 if (response.body().size() == 0) {
 
-                    common.showUserDefinedAlertType("No items found", getActivity(), getContext(), "Warning");
+                    common.showUserDefinedAlertType(errorMessages.EMC_0011, getActivity(), getContext(), "Warning");
                     clearFields();
 
                 } else {

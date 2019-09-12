@@ -187,8 +187,8 @@ public class BatchPick extends Fragment implements View.OnClickListener, Barcode
         lvDDNo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedDeliveryDoc = lvDDNo.getItemAtPosition(position).toString();
-                getPendingItemList(selectedDeliveryDoc);
+                dDoc = lvDDNo.getItemAtPosition(position).toString();
+                getPendingItemList(dDoc);
             }
         });
 
@@ -986,7 +986,7 @@ public class BatchPick extends Fragment implements View.OnClickListener, Barcode
 
                 ProgressDialogUtils.closeProgressDialog();
 
-               /* if (response.body() != null) {
+                if (response.body() != null) {
 
                     Gson gson = new Gson();
                     String json = gson.toJson(response.body());
@@ -1000,14 +1000,14 @@ public class BatchPick extends Fragment implements View.OnClickListener, Barcode
                             etQty.setText("");
 
                         } else {
-                            common.showUserDefinedAlertType("Reprint Failed", getActivity(), getContext(), "Error");
+                            common.showUserDefinedAlertType("Reprint Failed, Please check printer settings", getActivity(), getContext(), "Error");
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
 
-                }*/
+                }
 
             }
 
