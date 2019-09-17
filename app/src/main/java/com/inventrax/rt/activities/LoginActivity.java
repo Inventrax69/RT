@@ -117,10 +117,10 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
                     System.exit(0);
                 }
             });*/
-            /*txtReleaseDate = (TextView) findViewById(R.id.txtDate);
+            txtReleaseDate = (TextView) findViewById(R.id.txtDate);
             txtVersion = (TextView) findViewById(R.id.txtVersionName);
             txtVersion.setText("Version:" + " " + AndroidUtils.getVersionName().toString());
-            txtReleaseDate.setText("Release Date:" + " " + "16-11-2018");*/
+            txtReleaseDate.setText("Release Date:" + " " + "17-09-2019");
 
 
             SharedPreferences sp = this.getSharedPreferences("SettingsActivity", Context.MODE_PRIVATE);

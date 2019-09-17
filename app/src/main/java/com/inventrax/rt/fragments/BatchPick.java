@@ -372,7 +372,6 @@ public class BatchPick extends Fragment implements View.OnClickListener, Barcode
                 index = Integer.parseInt(lblSerialNo.getText().toString()) - 1;
 
                 if (index == listSize - 1) {
-
                     index = 0;
                 } else {
                     index++;
@@ -647,9 +646,71 @@ public class BatchPick extends Fragment implements View.OnClickListener, Barcode
                             OEMNumber = responseList.get(index).getOemPartNumber();
                             productionOrderHeaderId = responseList.get(index).getProductionOrderHeaderId();
 
-                            query = "EXEC [dbo].[sp_INV_GetStockInList_For_HHT]@MaterialMasterID=" + responseList.get(index).getMaterialMasterId() + ",@OutBoundID=" + responseList.get(index).getOutboundId();
 
-                            getDataSet(query);
+
+                            etQty.setText("");
+                            selectedLocation = "";
+                            selectedBatch = "";
+                            qtyInSelectedLocation = "";
+                            selectedOEMno = "";
+                            selectedSerialNo = "";
+                            selectedMfg = "";
+                            selectedExp = "";
+
+                            if(Double.parseDouble(lblReqQty.getText().toString())<=Double.parseDouble(lblPkdQty.getText().toString())) {
+                                if(index!=0 ){
+
+                                    if (index == listSize - 1) {
+                                        index = 0;
+                                    } else {
+                                        index++;
+                                    }
+
+
+
+                                        lblKitCode.setText(responseList.get(index).getKitCode());
+                                        lblDDNo.setText(responseList.get(index).getObdNumber());
+                                        lblPart.setText(responseList.get(index).getMcode());
+                                        lblUOM.setText(responseList.get(index).getUOM());
+                                        lblReqQty.setText(String.valueOf(responseList.get(index).getSoQty()));
+                                        lblPkdQty.setText(String.valueOf(responseList.get(index).getPickedQty()));
+                                        lblOEMPart.setText(responseList.get(index).getOemPartNumber());
+
+
+                                        lblPkdQty.setBackgroundColor(getResources().getColor(R.color.red));
+
+                                        if (lblReqQty.getText().toString().equalsIgnoreCase(lblPkdQty.getText().toString())) {
+
+                                            lblPkdQty.setBackgroundColor(getResources().getColor(R.color.green));
+                                        }
+                                        conversationFactor = responseList.get(index).getConversionFactor();
+                                        uom = responseList.get(index).getUOM();
+                                        obdNum = responseList.get(index).getObdNumber();
+                                        mmId = responseList.get(index).getMaterialMasterId();
+                                        salesUOMId = responseList.get(index).getSuomId();
+                                        soDetailsId = responseList.get(index).getSODetailsId();
+                                        outbondId = responseList.get(index).getOutboundId();
+                                        lineNumber = responseList.get(index).getLineNumber();
+                                        soHeaderId = responseList.get(index).getSOHeaderId();
+                                        description = responseList.get(index).getDescription();
+                                        OEMNumber = responseList.get(index).getOemPartNumber();
+                                        productionOrderHeaderId = responseList.get(index).getProductionOrderHeaderId();
+
+                                        lblSerialNo.setText(String.valueOf(index + 1));
+
+                                        query = "EXEC [dbo].[sp_INV_GetStockInList_For_HHT]@MaterialMasterID=" + responseList.get(index).getMaterialMasterId() + ",@OutBoundID=" + responseList.get(index).getOutboundId();
+
+                                        getDataSet(query);
+                                    }
+
+
+
+                            }else {
+                                query = "EXEC [dbo].[sp_INV_GetStockInList_For_HHT]@MaterialMasterID=" + responseList.get(index).getMaterialMasterId() + ",@OutBoundID=" + responseList.get(index).getOutboundId();
+
+                                getDataSet(query);
+                            }
+
                         }
                     }
                 }
@@ -860,9 +921,12 @@ public class BatchPick extends Fragment implements View.OnClickListener, Barcode
                         if (status.equalsIgnoreCase("true")) {
                             currentIndex = index;
                             index = 0;
-                            common.showUserDefinedAlertType("Picked Successfully", getActivity(), getContext(), "Success");
+                            //common.showUserDefinedAlertType("Picked Successfully", getActivity(), getContext(), "Success");
                             etQty.setText("");
+
                             getPendingItemList(dDoc);
+
+
                         } else {
                             common.showUserDefinedAlertType(movieObject.getString("responceMessage"), getActivity(), getContext(), "Warning");
                         }

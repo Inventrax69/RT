@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/rlLogo"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="110dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -31,13 +31,13 @@
     <RelativeLayout
         android:id="@+id/rlLogin"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="350dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/rlLogo"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal">
 
 
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_alignParentLeft="true">
 
             <EditText
@@ -77,7 +77,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="105dp"
+            android:layout_marginTop="95dp"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/colorAccent">
 
@@ -108,12 +108,16 @@
             android:buttonTint="@color/colorAccent"
             android:text="@string/saveCredentials" />
 
+
+
+
+
         <LinearLayout
             android:id="@+id/llButtons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/cbRememberMe"
-            android:layout_marginTop="65dp"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal"
             android:weightSum="3">
 
@@ -149,8 +153,7 @@
 
         </LinearLayout>
 
-
-       <!-- <TextView
+        <TextView
             android:id="@+id/txtVersionName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -163,8 +166,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtVersionName"
-            android:layout_marginTop="3dp"
-            android:text="Release Date" />-->
+            android:text="Release Date" />
+
+
     </RelativeLayout>
 
     <ImageView
