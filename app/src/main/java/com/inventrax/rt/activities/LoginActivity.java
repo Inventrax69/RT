@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
             txtReleaseDate = (TextView) findViewById(R.id.txtDate);
             txtVersion = (TextView) findViewById(R.id.txtVersionName);
             txtVersion.setText("Version:" + " " + AndroidUtils.getVersionName().toString());
-            txtReleaseDate.setText("Release Date:" + " " + "17-09-2019");
+            txtReleaseDate.setText("Release Date:" + " " + "04-10-2019");
 
 
             SharedPreferences sp = this.getSharedPreferences("SettingsActivity", Context.MODE_PRIVATE);

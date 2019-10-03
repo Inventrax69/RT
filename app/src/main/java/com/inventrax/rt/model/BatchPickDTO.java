@@ -14,6 +14,12 @@ public class BatchPickDTO implements Serializable {
     private String RefLocation;
     private String IsDamaged;
     private String SerialNo;
+    private String CalibrationDate;
+    private String CalibrationDueDate;
+    private String Plant;
+    private String StockType;
+    private String EndofLifeDate;
+
 
 
     public String getLocation() {
@@ -94,5 +100,45 @@ public class BatchPickDTO implements Serializable {
 
     public void setSerialNo(String serialNo) {
         SerialNo = serialNo;
+    }
+
+    public String getCalibrationDate() {
+        return CalibrationDate;
+    }
+
+    public void setCalibrationDate(String calibrationDate) {
+        CalibrationDate = calibrationDate;
+    }
+
+    public String getCalibrationDueDate() {
+        return CalibrationDueDate;
+    }
+
+    public void setCalibrationDueDate(String calibrationDueDate) {
+        CalibrationDueDate = calibrationDueDate;
+    }
+
+    public String getPlant() {
+        return Plant;
+    }
+
+    public void setPlant(String plant) {
+        Plant = plant;
+    }
+
+    public String getStockType() {
+        return StockType;
+    }
+
+    public void setStockType(String stockType) {
+        StockType = stockType;
+    }
+
+    public String getEndofLifeDate() {
+        return EndofLifeDate;
+    }
+
+    public void setEndofLifeDate(String endofLifeDate) {
+        EndofLifeDate = endofLifeDate;
     }
 }

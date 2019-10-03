@@ -95,7 +95,9 @@ public class BatchPick extends Fragment implements View.OnClickListener, Barcode
     private Common common;
     int listSize = 0;
     static int index = 0, salesUOMId = 0, soDetailsId = 0, outbondId = 0, soHeaderId = 0, currentIndex = 0;
-    String selectedLocation = "", selectedBatch = "", qtyInSelectedLocation = "", selectedOEMno = "", selectedSerialNo = "", selectedMfg = "", selectedExp = "";
+    String selectedLocation = "", selectedBatch = "", qtyInSelectedLocation = "", selectedOEMno = "",
+            selectedSerialNo = "", selectedMfg = "", selectedExp = "",selectedPlant= "",selectedStockType= "",selectedCalibrationDate="",
+            selectedCalibrationDueDate= "",selectedEndofLifeDate= "";
     double conversationFactor = 0.0;
 
     private ExceptionLoggerUtils exceptionLoggerUtils;
@@ -137,6 +139,8 @@ public class BatchPick extends Fragment implements View.OnClickListener, Barcode
     }
 
     private void loadFormControls() {
+
+        dDoc = "";
 
         SharedPreferences sp = getActivity().getSharedPreferences("SettingsActivity", Context.MODE_PRIVATE);
         printer = sp.getString("printer", "");
@@ -311,6 +315,11 @@ public class BatchPick extends Fragment implements View.OnClickListener, Barcode
                 selectedSerialNo = "";
                 selectedMfg = "";
                 selectedExp = "";
+                selectedPlant = "";
+                selectedStockType = "";
+                selectedCalibrationDate = "";
+                selectedCalibrationDueDate = "";
+                selectedEndofLifeDate = "";
 
                 index = Integer.parseInt(lblSerialNo.getText().toString()) - 1;
 
@@ -369,6 +378,11 @@ public class BatchPick extends Fragment implements View.OnClickListener, Barcode
                 selectedSerialNo = "";
                 selectedMfg = "";
                 selectedExp = "";
+                selectedPlant = "";
+                selectedStockType = "";
+                selectedCalibrationDate = "";
+                selectedCalibrationDueDate = "";
+                selectedEndofLifeDate = "";
                 index = Integer.parseInt(lblSerialNo.getText().toString()) - 1;
 
                 if (index == listSize - 1) {
@@ -656,6 +670,11 @@ public class BatchPick extends Fragment implements View.OnClickListener, Barcode
                             selectedSerialNo = "";
                             selectedMfg = "";
                             selectedExp = "";
+                            selectedPlant = "";
+                            selectedStockType = "";
+                            selectedCalibrationDate = "";
+                            selectedCalibrationDueDate = "";
+                            selectedEndofLifeDate = "";
 
                             if(Double.parseDouble(lblReqQty.getText().toString())<=Double.parseDouble(lblPkdQty.getText().toString())) {
                                 if(index!=0 ){
@@ -770,18 +789,53 @@ public class BatchPick extends Fragment implements View.OnClickListener, Barcode
                             BatchPickDTO batchPickDTO = new BatchPickDTO();
                             batchPickDTO.setLocation(jsonobject.getString("Location"));
                             batchPickDTO.setAvailableQuantity(jsonobject.getString("AvailableQuantity"));
-                            batchPickDTO.setBatchNo(jsonobject.getString("BatchNo"));
-                            batchPickDTO.setOEMBatchNo(jsonobject.getString("OEMBatchNo"));
-                            batchPickDTO.setSameWithSODetails(jsonobject.getString("SameWithSODetails"));
-                            batchPickDTO.setRefLocation(jsonobject.getString("RefLocation"));
-                            batchPickDTO.setIsDamaged(jsonobject.getString("IsDamaged"));
-                            batchPickDTO.setSerialNo(jsonobject.getString("SerialNo"));
+                            if (jsonobject.toString().contains("BatchNo")) {
+                                batchPickDTO.setBatchNo(jsonobject.getString("BatchNo"));
+                            }
+                            if (jsonobject.toString().contains("OEMBatchNo")) {
+                                batchPickDTO.setOEMBatchNo(jsonobject.getString("OEMBatchNo"));
+                            }
+                            if (jsonobject.toString().contains("SameWithSODetails")) {
+                                batchPickDTO.setSameWithSODetails(jsonobject.getString("SameWithSODetails"));
+                            }
+                            if (jsonobject.toString().contains("RefLocation")) {
+                                batchPickDTO.setRefLocation(jsonobject.getString("RefLocation"));
+                            }
+                            if (jsonobject.toString().contains("IsDamaged")) {
+                                batchPickDTO.setIsDamaged(jsonobject.getString("IsDamaged"));
+                            }
+                            if (jsonobject.toString().contains("SerialNo")) {
+                                batchPickDTO.setSerialNo(jsonobject.getString("SerialNo"));
+                            }
                             if (jsonobject.toString().contains("MfgDate")) {
                                 batchPickDTO.setMfgDate(jsonobject.getString("MfgDate"));
                             }
                             if (jsonobject.toString().contains("ExpDate")) {
                                 batchPickDTO.setExpDate(jsonobject.getString("ExpDate"));
                             }
+
+                            if (jsonobject.toString().contains("Plant")) {
+                                batchPickDTO.setPlant(jsonobject.getString("Plant"));
+                            }
+
+                            if (jsonobject.toString().contains("StockType")) {
+                                batchPickDTO.setStockType(jsonobject.getString("StockType"));
+                            }
+
+                            if (jsonobject.toString().contains("CalibrationDate")) {
+                                batchPickDTO.setCalibrationDate(jsonobject.getString("CalibrationDate"));
+                            }
+
+                            if (jsonobject.toString().contains("CalibrationDueDate")) {
+                                batchPickDTO.setCalibrationDueDate(jsonobject.getString("CalibrationDueDate"));
+                            }
+
+                            if (jsonobject.toString().contains("EndofLifeDate")) {
+                                batchPickDTO.setEndofLifeDate(jsonobject.getString("EndofLifeDate"));
+                            }
+
+
+
 
                             if (batchPickDTO.getSameWithSODetails().equalsIgnoreCase("1") && batchPickDTO.getRefLocation().equalsIgnoreCase("1") && batchPickDTO.getIsDamaged().equalsIgnoreCase("No")) {
                                 lstBatchPick.add(batchPickDTO);
@@ -801,6 +855,11 @@ public class BatchPick extends Fragment implements View.OnClickListener, Barcode
                                 selectedSerialNo = lstBatchPick.get(position).getSerialNo();
                                 selectedExp = lstBatchPick.get(position).getExpDate();
                                 selectedMfg = lstBatchPick.get(position).getMfgDate();
+                                selectedPlant = lstBatchPick.get(position).getPlant();
+                                selectedStockType = lstBatchPick.get(position).getStockType();
+                                selectedCalibrationDate = lstBatchPick.get(position).getCalibrationDate();
+                                selectedCalibrationDueDate = lstBatchPick.get(position).getCalibrationDueDate();
+                                selectedEndofLifeDate = lstBatchPick.get(position).getEndofLifeDate();
 
 
                                 //Toast.makeText(getContext(),lstBatchPick.get(position).getLocation() + "/" +lstBatchPick.get(position).getBatchNo(),Toast.LENGTH_SHORT).show();
@@ -872,6 +931,36 @@ public class BatchPick extends Fragment implements View.OnClickListener, Barcode
 
         if (selectedBatch != null && !selectedBatch.isEmpty() && !selectedBatch.equals("null")) {
             mspVal += selectedBatch + ",";
+        } else {
+            mspVal += "y" + ",";
+        }
+
+        if (selectedPlant != null &&  !selectedPlant.equals("null")) {
+            mspVal += selectedPlant + ",";
+        } else {
+            mspVal += "y" + ",";
+        }
+
+        if (selectedStockType != null  && !selectedStockType.equals("null")) {
+            mspVal += selectedStockType + ",";
+        } else {
+            mspVal += "y" + ",";
+        }
+
+        if (selectedCalibrationDate != null  && !selectedCalibrationDate.equals("null")) {
+            mspVal += selectedCalibrationDate + ",";
+        } else {
+            mspVal += "y" + ",";
+        }
+
+        if (selectedCalibrationDueDate != null  && !selectedCalibrationDueDate.equals("null")) {
+            mspVal += selectedCalibrationDueDate + ",";
+        } else {
+            mspVal += "y" + ",";
+        }
+
+        if (selectedEndofLifeDate != null && !selectedEndofLifeDate.equals("null")) {
+            mspVal += selectedEndofLifeDate + ",";
         } else {
             mspVal += "y" + ",";
         }

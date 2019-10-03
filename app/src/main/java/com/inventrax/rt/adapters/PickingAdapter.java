@@ -86,8 +86,9 @@ public class PickingAdapter extends  RecyclerView.Adapter{
         ((MyViewHolder) holder).txtQty.setText(String.valueOf(batchPickDTO.getAvailableQuantity()));
         ((MyViewHolder) holder).txtBatch.setText(String.valueOf(batchPickDTO.getBatchNo()));
         ((MyViewHolder) holder).txtLocation.setText(String.valueOf(batchPickDTO.getLocation()));
-        ((MyViewHolder) holder).txtOEMpart.setText(String.valueOf(batchPickDTO.getOEMBatchNo()));
-
+        if(batchPickDTO.getOEMBatchNo() != null && !batchPickDTO.getOEMBatchNo().equals("null")) {
+            ((MyViewHolder) holder).txtOEMpart.setText(String.valueOf(batchPickDTO.getOEMBatchNo()));
+        }
 
 
     }
