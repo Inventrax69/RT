@@ -15,6 +15,11 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
 
+
+    @GET("api/getsettings")
+    Call<String> getSettings();
+
+
     @GET("api/login/{UserName}/{Password}/{LoginIPAddress}")
     Call<String> get(
             @Query("UserName") String UserName,
@@ -40,9 +45,6 @@ public interface ApiInterface {
             @Query("UserID") String userId,
             @Query("vMcode") String mcode);
 
-
-    @GET("api/getsettings")
-    Call<String> getSettings();
 
 
     @GET("api/GetPendingItemList/{obdNumberList}")

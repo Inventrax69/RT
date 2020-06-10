@@ -57,7 +57,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by karthik.m on 05/08/2018.
+ * Created by padmaja.b on 20/12/2018.
  */
 
 public class InternalTransferFragment extends Fragment implements View.OnClickListener, BarcodeReader.TriggerListener, BarcodeReader.BarcodeListener {
